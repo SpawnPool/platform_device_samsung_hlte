@@ -20,8 +20,8 @@
 # definition file).
 #
 
-# inherit from common msm8960
--include device/samsung/msm8960-common/BoardConfigCommon.mk
+# inherit from common msm8974
+-include device/samsung/msm8974-common/BoardConfigCommon.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/hlte/include
 
@@ -31,9 +31,7 @@ TARGET_KERNEL_CUSTOM_TOOLCHAIN_PREFIX := arm-cortex_a15-linux-gnueabihf-
 TARGET_GCC_VERSION_AND := 4.8
 
 
-# overrides  msm8960
-TARGET_BOARD_PLATFORM := msm8974
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
+# Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 # Kernel Configs
@@ -54,7 +52,6 @@ BOARD_EGL_CFG := device/samsung/hlte/egl.cfg
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/hlte/recovery/recovery_keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -69,6 +66,8 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1572864000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 28651290624
 BOARD_FLASH_BLOCK_SIZE := 131072
 
+BOARD_RECOVERY_SWIPE := true
+
 # bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/hlte/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/hlte/bluetooth/vnd_hlte.txt
@@ -80,13 +79,6 @@ BOARD_NFC_HAL_SUFFIX := msm8974
 # Samsung's nonstandard csd-client
 BOARD_HAVE_NEW_QCOM_CSDCLIENT := true
 
-# QCOM support
-BOARD_USES_QCOM_HARDWARE := true
-TARGET_QCOM_MEDIA_VARIANT := caf-new
-TARGET_QCOM_DISPLAY_VARIANT := caf-new
-BOARD_USES_LEGACY_ALSA_AUDIO := 
-TARGET_QCOM_AUDIO_VARIANT := caf
-
 # Audio settings
 BOARD_USES_CUSTOM_AUDIO_PLATFORM_PATH := device/samsung/hlte/audio/platform
 AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
@@ -96,11 +88,6 @@ AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 #AUDIO_FEATURE_DISABLED_INCALL_MUSIC := true
 #AUDIO_FEATURE_DISABLED_SPKR_PROTECTION := true
 #AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
-
-WIFI_DRIVER_FW_PATH_P2P     := 
-
-# Don't use qcom camera HAL
-#USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Build lights 
 TARGET_PROVIDES_LIBLIGHT := true
@@ -124,15 +111,16 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := hltexx,hltespr,hltetmo,SM-N900T,hltecan,hlteatt,hltevzw,hlte
+TARGET_OTA_ASSERT_DEVICE := hltexx,hltespr,hltetmo,SM-N900T,hltecan,hlteatt,hltevzw,hlteusc,hlte
 
 TARGET_KERNEL_VARIANT_CONFIG := msm8974_sec_hlte_eur_defconfig
 
-# PowerHAL extension
+# PowerHAL
+TARGET_POWERHAL_VARIANT := qcom
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := device/samsung/hlte/power/power_ext.c
 
-# The "new" GPS is really the old GPS, override it.
-BOARD_HAVE_NEW_QC_GPS :=
+# Consumerir
+TARGET_PROVIDES_CONSUMERIR_HAL := true
 
 # We don't use old-ass RPC
 TARGET_NO_RPC := true
