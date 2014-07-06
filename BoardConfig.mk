@@ -26,8 +26,8 @@
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/hlte/include
 
 # Toolchain
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := Linaro-4.8
-TARGET_KERNEL_CUSTOM_TOOLCHAIN_PREFIX := arm-cortex_a15-linux-gnueabihf-
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN_PREFIX := arm-cortex_a15-linux-gnueabihf-
 TARGET_GCC_VERSION_AND := 4.8
 
 
